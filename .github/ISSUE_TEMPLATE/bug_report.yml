@@ -1,0 +1,57 @@
+name: 🐞 Bug report
+description: Report a defect in the Zenvara CLI (zen).
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filing, please check the [troubleshooting guide](https://docs.zenvara.ai/getting-started/troubleshooting/) and search [existing issues](https://github.com/zenvara-platform/cli/issues). Try `zen cli update` first — the fix may already be released.
+        ⚠️ **Security vulnerabilities:** email **security@zenvara.ai** — do not report them here.
+  - type: input
+    id: version
+    attributes:
+      label: CLI version
+      description: Output of `zen --version`.
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS / architecture
+      placeholder: "Ubuntu 24.04 x64, Windows 11 x64, macOS 15 arm64, …"
+    validations:
+      required: true
+  - type: dropdown
+    id: transport
+    attributes:
+      label: How is zen targeting Zenvara?
+      options:
+        - Remote server (--host / saved host)
+        - Local install (--dir / saved dir)
+        - MCP bridge (zen mcp)
+        - Not applicable (zen-owned command — build, service, path, …)
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command and output
+      description: The exact command you ran and its full output. Redact api-key, tokens, and internal URLs.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Fresh install of zen…
+        2. Run `zen …`
+        3. Observe…
