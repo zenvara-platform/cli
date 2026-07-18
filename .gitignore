@@ -1,0 +1,20 @@
+# This repo holds releases, issues, and discussions — not source code.
+# Keep it free of downloaded binaries and local cruft.
+
+# Release artifacts (distributed via GitHub Releases, never committed)
+zen
+zen.exe
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.exe
+*.msi
+*.dmg
+*.pkg
+*.sha256
+*.sig
+
+# Logs
+*.log
