@@ -40,6 +40,18 @@ zen --version
 
 ### Windows
 
+#### Scoop (recommended)
+
+```powershell
+scoop bucket add zenvara https://github.com/zenvara-platform/cli
+scoop install zen
+zen --version
+```
+
+Scoop shims `zen` onto your PATH, so `zen path install` is unnecessary. Upgrade later with `scoop update zen`.
+
+#### Manual
+
 ```powershell
 # Download zen-win-x64.zip, then verify against the .sha256:
 Get-FileHash zen-win-x64.zip -Algorithm SHA256
