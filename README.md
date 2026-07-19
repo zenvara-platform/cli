@@ -29,6 +29,16 @@ Supported platforms: `linux-x64`, `linux-arm64`, `win-x64`, `osx-x64`, `osx-arm6
 
 ### Linux
 
+#### Quick install (recommended)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/zenvara-platform/cli/main/install.sh | sh
+```
+
+Detects your architecture, verifies the checksum, and installs `zen` to `~/.local/bin`. Pin a version with `ZEN_VERSION=1.2.0` or change the target with `ZEN_INSTALL_DIR`.
+
+#### Manual
+
 ```bash
 # Download zen-linux-x64.tar.gz (or -arm64) and its .sha256, then:
 sha256sum -c zen-linux-x64.tar.gz.sha256
@@ -61,6 +71,16 @@ zen --version
 ```
 
 ### macOS
+
+#### Quick install (recommended)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/zenvara-platform/cli/main/install.sh | sh
+```
+
+Detects Apple Silicon vs Intel, verifies the checksum, clears the Gatekeeper quarantine, and installs `zen` to `~/.local/bin`. Pin a version with `ZEN_VERSION=1.2.0` or change the target with `ZEN_INSTALL_DIR`.
+
+#### Manual
 
 ```bash
 # Download zen-osx-arm64.tar.gz (Apple Silicon) or zen-osx-x64.tar.gz (Intel), then:
