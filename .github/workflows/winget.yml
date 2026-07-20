@@ -1,0 +1,32 @@
+# Submits zen version updates to the Windows Package Manager Community Repository
+# (microsoft/winget-pkgs). Canonical source: cli-source packaging/winget/cli-repo.winget.yml
+# — do not edit here by hand.
+#
+# WHY THIS LIVES HERE (not in cli-source): releases are published to this repo
+# (zenvara-platform/cli) via a PAT from cli-source's release.yml, so the
+# `release: published` event fires here, not in cli-source. A PAT-created release
+# DOES trigger workflows, unlike one created with the default GITHUB_TOKEN.
+#
+# This action only UPDATES an existing winget-pkgs package — the first submission
+# (Zenvara.Zen) is a one-off manual `wingetcreate submit` using the seed manifests
+# in cli-source's packaging/winget/1.0.0/.
+
+name: Publish to WinGet
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  winget:
+    name: Submit zen to winget-pkgs
+    # Stable-only: never push a prerelease to the public winget catalog.
+    if: ${{ !github.event.release.prerelease }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: vedantmgoyal9/winget-releaser@v2
+        with:
+          identifier: Zenvara.Zen
+          # Only the Windows zip is an "installer"; ignore the tar.gz assets.
+          installers-regex: 'zen-win-x64\.zip$'
+          token: ${{ secrets.WINGET_TOKEN }}
