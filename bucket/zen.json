@@ -6,7 +6,7 @@
   "architecture": {
     "64bit": {
       "url": "https://github.com/zenvara-platform/cli/releases/download/1.0.0/zen-win-x64.zip",
-      "hash": "9a33b6abdd0265d72075ae1d5238ec9438f58abd0c245a07a22d52ba05ea88a3",
+      "hash": "067383f27a51f3f49fa8740578dd2cd0b04c45c6066c148eb58042f0518b9133",
       "bin": "zen.exe"
     }
   }
