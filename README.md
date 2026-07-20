@@ -37,6 +37,20 @@ curl -fsSL https://raw.githubusercontent.com/zenvara-platform/cli/main/install.s
 
 Detects your architecture, verifies the checksum, and installs `zen` to `~/.local/bin`. Pin a version with `ZEN_VERSION=1.2.0` or change the target with `ZEN_INSTALL_DIR`.
 
+#### apt (Debian / Ubuntu)
+
+```bash
+curl -fsSL https://zenvara-platform.github.io/apt/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/zenvara.gpg
+echo "deb [signed-by=/usr/share/keyrings/zenvara.gpg] https://zenvara-platform.github.io/apt stable main" | sudo tee /etc/apt/sources.list.d/zenvara.list
+sudo apt update && sudo apt install zen
+```
+
+#### Homebrew
+
+```bash
+brew install zenvara-platform/tap/zen
+```
+
 #### Manual
 
 ```bash
@@ -60,6 +74,12 @@ zen --version
 
 Scoop shims `zen` onto your PATH, so `zen path install` is unnecessary. Upgrade later with `scoop update zen`.
 
+#### Chocolatey
+
+```powershell
+choco install zen
+```
+
 #### Manual
 
 ```powershell
@@ -72,7 +92,13 @@ zen --version
 
 ### macOS
 
-#### Quick install (recommended)
+#### Homebrew (recommended)
+
+```bash
+brew install zenvara-platform/tap/zen
+```
+
+#### Quick install
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/zenvara-platform/cli/main/install.sh | sh
