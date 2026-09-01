@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "description": "Lightweight cross-platform CLI for Zenvara — single native executable, no runtime deps.",
+  "homepage": "https://github.com/zenvara-platform/cli",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/zenvara-platform/cli/releases/download/1.0.0/zen-win-x64.zip",
+      "hash": "067383f27a51f3f49fa8740578dd2cd0b04c45c6066c148eb58042f0518b9133",
+      "bin": "zen.exe"
+    }
+  }
+}
