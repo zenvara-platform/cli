@@ -8,7 +8,7 @@
 #    resolves the latest release at runtime — so it is deployed once, not per release.
 #
 # Overrides (env):
-#   ZEN_VERSION      pin a version (default: latest), e.g. ZEN_VERSION=1.2.0
+#   ZEN_VERSION      pin a version (default: latest), e.g. ZEN_VERSION=1.1.0
 #   ZEN_INSTALL_DIR  install location (default: ~/.local/bin — zen's own user dir)
 #
 # Windows: use Scoop, winget, or Chocolatey instead (see the repo README).

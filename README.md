@@ -36,7 +36,7 @@ Supported platforms: `linux-x64`, `linux-arm64`, `win-x64`, `osx-x64`, `osx-arm6
 curl -fsSL https://raw.githubusercontent.com/zenvara-platform/cli/main/install.sh | sh
 ```
 
-Detects your architecture, verifies the checksum, and installs `zen` to `~/.local/bin`. Pin a version with `ZEN_VERSION=1.2.0` or change the target with `ZEN_INSTALL_DIR`.
+Detects your architecture, verifies the checksum, and installs `zen` to `~/.local/bin`. Pin a version with `ZEN_VERSION=1.1.0` or change the target with `ZEN_INSTALL_DIR`.
 
 #### apt (Debian / Ubuntu)
 
@@ -105,7 +105,7 @@ brew install zenvara-platform/tap/zen
 curl -fsSL https://raw.githubusercontent.com/zenvara-platform/cli/main/install.sh | sh
 ```
 
-Detects Apple Silicon vs Intel, verifies the checksum, clears the Gatekeeper quarantine, and installs `zen` to `~/.local/bin`. Pin a version with `ZEN_VERSION=1.2.0` or change the target with `ZEN_INSTALL_DIR`.
+Detects Apple Silicon vs Intel, verifies the checksum, clears the Gatekeeper quarantine, and installs `zen` to `~/.local/bin`. Pin a version with `ZEN_VERSION=1.1.0` or change the target with `ZEN_INSTALL_DIR`.
 
 #### Manual
 
