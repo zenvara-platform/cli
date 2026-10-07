@@ -1,32 +1,46 @@
-# Submits zen version updates to the Windows Package Manager Community Repository
-# (microsoft/winget-pkgs). Canonical source: cli-source packaging/winget/cli-repo.winget.yml
+# Submits zen version updates to microsoft/winget-pkgs. Canonical source: cli-source packaging/winget/cli-repo.winget.yml
 # — do not edit here by hand.
 #
-# WHY THIS LIVES HERE (not in cli-source): releases are published to this repo
-# (zenvara-platform/cli) via a PAT from cli-source's release.yml, so the
-# `release: published` event fires here, not in cli-source. A PAT-created release
-# DOES trigger workflows, unlike one created with the default GITHUB_TOKEN.
+# Started by the release pipeline after a stable release is published
+# (repository_dispatch, type `winget-publish`, carrying the tag), or by hand
+# for a single tag (workflow_dispatch).
 #
-# This action only UPDATES an existing winget-pkgs package — the first submission
-# (Zenvara.Zen) is a one-off manual `wingetcreate submit` using the seed manifests
-# in cli-source's packaging/winget/1.0.0/.
+# This action only UPDATES an existing winget-pkgs package; the first
+# submission of Zenvara.Zen was made manually.
 
 name: Publish to WinGet
 
 on:
-  release:
-    types: [published]
+  repository_dispatch:
+    types: [winget-publish]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Stable release tag to submit (e.g. 1.2.0)
+        required: true
+
+concurrency:
+  group: winget-${{ github.event.client_payload.tag || inputs.tag }}
+  cancel-in-progress: false
 
 jobs:
   winget:
     name: Submit zen to winget-pkgs
-    # Stable-only: never push a prerelease to the public winget catalog.
-    if: ${{ !github.event.release.prerelease }}
     runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.client_payload.tag || inputs.tag }}
     steps:
-      - uses: vedantmgoyal9/winget-releaser@v2
+      # Stable releases only: never submit a prerelease to the public winget catalog.
+      - name: Refuse a missing or prerelease tag
+        shell: bash
+        run: |
+          if [ -z "$TAG" ]; then echo "no tag given" >&2; exit 1; fi
+          case "$TAG" in *-*) echo "refusing prerelease tag $TAG" >&2; exit 1;; esac
+
+      - uses: vedantmgoyal9/winget-releaser@4ffc7888bffd451b357355dc214d43bb9f23917e # v2
         with:
           identifier: Zenvara.Zen
-          # Only the Windows zip is an "installer"; ignore the tar.gz assets.
+          release-tag: ${{ env.TAG }}
+          # Only the Windows zip is an installer; ignore the tar.gz assets.
           installers-regex: 'zen-win-x64\.zip$'
           token: ${{ secrets.WINGET_TOKEN }}
